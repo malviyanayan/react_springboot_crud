@@ -7,9 +7,16 @@ import Features from "./components/Features";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AuthPage from "./components/Auth";
+
+
+
 
 function App() {
-  const [isLogin, setIsLogin] = React.useState(false);
+
+  
+const [isLogin, setIsLogin] = React.useState(false);
   const [info, setInfo] = React.useState({name : "Nayan Malviya"});
 
   function onLoginClick(){
@@ -20,8 +27,11 @@ function App() {
     setIsLogin(false);
   }
 
-  return (
-    <div className="App">
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <>
       <Navbar isLogin={isLogin} onLoginClick={onLoginClick} info={info} onLogOutClick={onLogOutClick} />
 
       <main className="flex-grow-1">
@@ -32,7 +42,26 @@ function App() {
       </main>
 
       <Footer />
-    </div>
+    </>, // your main layout (Navbar + Footer + Home content)
+  },
+  {
+    path: "/auth",
+    element: 
+    <>
+    {/* <Navbar isLogin={isLogin} onLoginClick={onLoginClick} info={info} onLogOutClick={onLogOutClick} /> */}
+    <AuthPage />
+    </>, // Login/Register page
+  },
+  // {
+  //   path: "/profile",
+  //   element: <Profile />, // user profile page
+  // },
+]);
+
+  
+  return (
+    <RouterProvider router={router}>
+    </RouterProvider>
   );
 }
 

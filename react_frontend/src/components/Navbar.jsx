@@ -28,7 +28,7 @@ export default function AppNavbar({ isLogin, onLoginClick, info, onLogOutClick }
             </Dropdown>
           ) : (
             <Button variant="danger" onClick={onLoginClick}>
-              <i class="fa-solid fa-arrow-right-to-bracket me-1"></i> Login/Register
+              <i className="fa-solid fa-arrow-right-to-bracket me-1"></i> Login/Register
             </Button>
           )}
         </div>
