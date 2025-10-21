@@ -3,6 +3,7 @@ import Avatar from "react-avatar";
 import { Navbar, Container, Dropdown, Button } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import 'bootstrap/dist/css/bootstrap.min.css'; // ensure CSS import
+import { Link } from "react-router-dom";
 
 export default function AppNavbar({ isLogin, onLoginClick, info, onLogOutClick }) {
   return (
@@ -22,12 +23,15 @@ export default function AppNavbar({ isLogin, onLoginClick, info, onLogOutClick }
 
               <Dropdown.Menu>
                 <Dropdown.Item href="/profile"><i class="fa-solid fa-user"></i> Profile</Dropdown.Item>
+                <Dropdown.Item href="/profile"><i class="fa-solid fa-calendar-days"></i> My Plans</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={onLogOutClick}><i class="fa-solid fa-right-from-bracket"></i> Logout</Dropdown.Item>
+                <Dropdown.Item className="text-danger" onClick={onLogOutClick}><i class="fa-solid fa-right-from-bracket"></i> Logout</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           ) : (
-            <Button variant="danger" onClick={onLoginClick}>
+
+            // as={Link} to="/auth" 
+            <Button variant="danger" onClick={() => onLoginClick()}>
               <i className="fa-solid fa-arrow-right-to-bracket me-1"></i> Login/Register
             </Button>
           )}
